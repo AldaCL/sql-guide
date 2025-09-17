@@ -1,0 +1,52 @@
+SELECT COUNT(nombre) AS total_clientes FROM cliente;
+
+SELECT COUNT(id_pedido) AS total_pedidos FROM pedido;
+
+SELECT COUNT(id_producto) AS total_productos_caros FROM producto
+WHERE precio > 20.0 
+
+SELECT * FROM producto
+WHERE precio > 20.0 AND precio < 50.0 AND id_producto>103;
+
+
+-- FUNCION GROUP BY PARA SABER EL TOTAL DE PEDIDOS POR CLIENTE--
+SELECT * FROM pedido;
+
+SELECT p.id_cliente, COUNT(p.id_pedido) as total_pedidos, c.nombre, c.correo 
+FROM pedido AS p
+LEFT JOIN cliente AS c ON p.id_cliente = c.id_cliente
+GROUP BY p.id_cliente, c.nombre, c.correo
+ORDER BY total_pedidos DESC, p.id_cliente ASC;
+
+-- FUNCION AVERAGE --
+
+-- FUNCION PARA REDONDEAR --
+SELECT ROUND(CAST(AVG(total) AS NUMERIC),2) AS tiket_promedio FROM pedido;
+
+SELECT p.id_cliente, ROUND(CAST(AVG(total) AS NUMERIC),2) AS tiket_promedio, c.nombre, c.correo 
+FROM pedido AS p
+LEFT JOIN cliente AS c ON p.id_cliente = c.id_cliente
+GROUP BY p.id_cliente, c.nombre, c.correo
+ORDER BY tiket_promedio DESC;
+-- FUNCION SUM --
+
+SELECT SUM(total) FROM pedido;
+
+SELECT p.id_cliente, SUM(total) as total_por_cliente, c.nombre, c.correo 
+FROM pedido AS p
+LEFT JOIN cliente AS c ON p.id_cliente = c.id_cliente
+GROUP BY p.id_cliente, c.nombre, c.correo
+ORDER BY total_por_cliente DESC;
+
+-- FUNCTION MAX Y MIN --
+
+SELECT MAX(total) FROM pedido;
+
+SELECT MIN(total) FROM pedido;
+
+SELECT MIN(precio) FROM producto;
+
+SELECT MAX(precio) FROM producto;
+
+
+

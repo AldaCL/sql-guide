@@ -1,0 +1,36 @@
+CREATE TABLE Cliente
+(
+  id_cliente INT NOT NULL,
+  nombre VARCHAR(200) NOT NULL,
+  correo VARCHAR(200) NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
+  PRIMARY KEY (id_cliente),
+  UNIQUE (id_cliente)
+);
+
+CREATE TABLE Producto
+(
+  id_producto INT NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
+  precio VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id_producto)
+);
+
+CREATE TABLE Pedido
+(
+  id_pedido INT NOT NULL,
+  fecha DATE NOT NULL,
+  total FLOAT NOT NULL,
+  id_cliente INT NOT NULL,
+  PRIMARY KEY (id_pedido),
+  FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+);
+
+CREATE TABLE DetallePedido
+(
+  cantidad INT NOT NULL,
+  id_pedido INT NOT NULL,
+  id_producto INT NOT NULL,
+  FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
+  FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
+);
