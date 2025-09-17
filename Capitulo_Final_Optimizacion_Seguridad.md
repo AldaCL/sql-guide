@@ -24,11 +24,11 @@ En lugar de recorrer toda la tabla (full scan), la base de datos utiliza el índ
 
 ```mermaid
 graph TD
-  A[Consulta: SELECT * FROM Cliente WHERE id=101] --> B[Sin índice: recorrer toda la tabla]
-  A --> C[Con índice: acceso directo a la fila]
+  A["Consulta: SELECT * FROM Cliente WHERE id=101"] --> B["Sin índice: recorrer toda la tabla"]
+  A --> C["Con índice: acceso directo a la fila"]
 
-  B --> D[Tiempo O(n)]
-  C --> E[Tiempo O(log n)]
+  B --> D["Tiempo O(n)"]
+  C --> E["Tiempo O(log n)"]
 ```
 
 ---
